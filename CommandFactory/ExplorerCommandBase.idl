@@ -1,0 +1,27 @@
+namespace CommandFactory
+{
+    enum ExplorerCommandState
+    {
+        Enabled = 0,
+        Disabled = 0x1,
+        Hidden = 0x2,
+        Checkbox = 0x4,
+        Checked = 0x8,
+        RadioChecked = 0x10
+    };
+
+    unsealed runtimeclass ExplorerCommandBase
+    {
+        ExplorerCommandBase();
+        String Title{ get; };
+        String Icon{ get; };
+        ExplorerCommandState State{ get; };
+        IVectorView<ExplorerCommandBase> SubCommands{ get; };
+        void Execute();
+    }
+
+    [default_interface]
+    runtimeclass SubCommand : ExplorerCommandBase
+    {
+    }
+}
